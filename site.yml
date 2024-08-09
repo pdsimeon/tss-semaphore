@@ -1,3 +1,11 @@
 ---
-- hosts:  "{{ target }}"
-tasks:
+- hosts: "{{ target }}"
+  become: true
+  tasks:
+
+  - debug:
+      msg: System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}
+
+  - debug:
+      msg: System OS {{ ansible_distribution }} {{ ansible_distribution_version }}
+    when: ansible_distribution is defined
